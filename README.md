@@ -9,7 +9,7 @@ require 'sinatra-symphony'
 require 'em-synchrony/em-http'
 
 class MyApp < Sinatra::Symphony
-  get '/'
+  get '/' do
     http = EM::HttpRequest.new('http://www.google.com').get(redirects: 0)
     "google returned http status of #{http.response_header.status}"
   end
