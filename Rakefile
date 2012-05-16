@@ -10,7 +10,7 @@ require 'rake/testtask'
 $rootdir = Pathname.new(__FILE__).dirname
 $gemspec = Gem::Specification.new do |s|
   s.name              = 'sinatra-symphony'
-  s.version           = '0.1.0'
+  s.version           = '0.2.0'
   s.date              = Date.today    
   s.authors           = ['Bharanee Rathna']
   s.email             = ['deepfryed@gmail.com']
@@ -25,6 +25,7 @@ $gemspec = Gem::Specification.new do |s|
   s.add_dependency('async-rack')
   s.add_development_dependency('rake')
   s.add_development_dependency('thin')
+  s.add_development_dependency('rack-test')
   s.add_development_dependency('em-http-request')
 end
 

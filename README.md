@@ -38,6 +38,36 @@ Time per request:       186.581 [ms] (mean, across all concurrent requests)
 Transfer rate:          0.72 [Kbytes/sec] received
 ```
 
+## Testing
+
+Uses good old `rack-test` and a wrapper.
+
+```ruby
+  require 'minitest/autorun'
+  require 'sinatra/symphony/test'
+
+  class MiniTest::Spec
+    include Rack::Test::Methods
+    
+    def app
+      Sinatra::Symphony::Test.new(@myapp) 
+    end
+  end
+
+  describe 'myapp' do
+    it 'should work' do
+      @myapp = Class.new(Sinatra::Symphony) do
+        get '/' do
+          'hello world'
+        end
+      end
+
+      get '/'
+      assert_equal 'hello world', last_response.body
+    end
+  end
+```
+
 # See Also
 [https://github.com/kyledrake/sinatra-synchrony](https://github.com/kyledrake/sinatra-synchrony)
 
