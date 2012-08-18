@@ -5,10 +5,8 @@ require 'async-rack'
 module Sinatra
   class Symphony < Base
 
-    %w(get put post delete).each do |name|
-      define_singleton_method(name) do |path, options = {}, &block|
-        route(name.upcase, path, options) {|*args| async_invoke(*args, &block)}
-      end
+    def self.route name, path, options = {}, &block
+      super(name.upcase, path, options) {|*args| async_invoke(*args, &block)}
     end
 
     # defaults
