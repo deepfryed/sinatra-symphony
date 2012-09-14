@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = "sinatra-symphony"
-  s.version = "0.2.1"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bharanee Rathna"]
-  s.date = "2012-08-18"
+  s.date = "2012-09-14"
   s.description = "em-synchrony glue for sinatra."
   s.email = ["deepfryed@gmail.com"]
   s.files = ["test/helper.rb", "test/test_app.rb", "lib/sinatra/symphony/test.rb", "lib/sinatra/symphony.rb", "lib/sinatra-symphony.rb", "README.md"]
