@@ -8,7 +8,9 @@ module Rack
     end
 
     def remap map
-      Hash[map.map {|path, app| [path, app.respond_to?(:new) ? app_instance(app, path) : app]}]
+      map.map     {|path, app| [path, app.respond_to?(:new) ? app_instance(app, path) : app]}
+         .sort_by {|path, app| path.size}.reverse
+         .map     {|path, app| [Regexp.new("^#{path.chomp('/')}(?:/(.*)|$)"), path, app]}
     end
 
     def call env
@@ -37,10 +39,9 @@ module Rack
     end
 
     def find_mapping path
-      parts = path.squeeze('/').split('/').each_with_object([]) {|e, a| a << ::File.join(a.last.to_s, e)}.reverse
-      parts.each do |mount|
-        if app = @map[mount]
-          return path.sub(%r{^#{mount}}, ''), mount, app
+      @map.each do |re, location, app|
+        if re.match(path)
+          return ["/#{$1}", location, app]
         end
       end
       return nil
