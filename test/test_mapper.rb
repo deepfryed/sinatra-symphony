@@ -10,7 +10,7 @@ describe 'Rack::Mapper' do
     @myapp = Class.new(Sinatra::Symphony) do
       use Rack::Mapper::AsyncLogger, mylogs
       get '/world' do
-        [@path, '/world']
+        [@rack_mapper_path, '/world']
       end
     end
 
