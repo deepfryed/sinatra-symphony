@@ -20,7 +20,7 @@ module Rack
 
     def app_instance app, path
       app.new do |instance|
-        instance.instance_variable_set(:@path, path)
+        instance.instance_variable_set(:@rack_mapper_path, path)
       end
     end
 
