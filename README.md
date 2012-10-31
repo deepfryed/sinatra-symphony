@@ -68,8 +68,6 @@ Uses good old `rack-test` and a wrapper.
   end
 ```
 
-## Bonus URL Mapper and 
-
 # See Also
 [https://github.com/kyledrake/sinatra-synchrony](https://github.com/kyledrake/sinatra-synchrony)
 
