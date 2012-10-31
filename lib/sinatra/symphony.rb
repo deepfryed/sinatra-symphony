@@ -9,12 +9,26 @@ module Sinatra
     disable :raise_errors, :show_exceptions
 
     def invoke
-      EM.synchrony do
+      if self.class.symphony[:exclude].include? @request.path_info
         super
-        env['async.callback'].call response.finish
-      end
+      else
+        EM.synchrony do
+          super
+          env['async.callback'].call response.finish
+        end
 
-      throw :async
+        throw :async
+      end
+    end
+
+    def self.synchronous *paths
+      paths.each do |path|
+        symphony[:exclude] << path
+      end
+    end
+
+    def self.symphony
+      @symphony ||= Hash.new {|h, k| h[k] = []}
     end
   end # Symphony
 end # Sinatra
