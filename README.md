@@ -72,4 +72,4 @@ Uses good old `rack-test` and a wrapper.
 [https://github.com/kyledrake/sinatra-synchrony](https://github.com/kyledrake/sinatra-synchrony)
 
 # License
-[Creative Commons Attribution - CC BY](http://creativecommons.org/licenses/by/3.0)
+MIT
