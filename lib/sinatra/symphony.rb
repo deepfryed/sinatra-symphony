@@ -8,7 +8,7 @@ module Sinatra
     # defaults
     disable :raise_errors, :show_exceptions
 
-    def invoke
+    def dispatch!
       if self.class.symphony[:exclude].include? @request.path_info
         super
       else
@@ -16,7 +16,6 @@ module Sinatra
           super
           env['async.callback'].call response.finish
         end
-
         throw :async
       end
     end
