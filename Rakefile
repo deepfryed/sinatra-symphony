@@ -20,7 +20,7 @@ $gemspec = Gem::Specification.new do |s|
   s.files             = Dir['{test,lib}/**/*.rb'] + %w(README.md)
   s.require_paths     = %w(lib)
 
-  s.add_dependency('sinatra')
+  s.add_dependency('sinatra', '>= 1.3.5')
   s.add_dependency('em-synchrony')
   s.add_dependency('async-rack')
   s.add_development_dependency('rake')
